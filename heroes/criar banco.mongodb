@@ -1,0 +1,72 @@
+mongosh "mongodb+srv://cluster0.ldsdg.mongodb.net/" --apiVersion 1 --username t3st3133
+
+--acessar um banco
+use heroesDb
+
+--verificar os bancos existentes
+show dbs
+
+--verificar as coleções de um banco
+show collections
+
+--criar uma coleção
+db.createCollection("nome da coleção")
+
+--CRUD
+--CREATE
+--criar uma coleção por inserção de dados
+db.heroes.insertOne({
+    name: "Reyna",
+    age: 25,
+    class: "Duelist",
+    genre: "Female"   
+})
+
+db.heroes.insertMany([
+    {
+        nome: "Jett",
+        age: 24,
+        class: "Duelist",
+        genre: "Female"
+    },
+    {
+        nome: "Omen",
+        age: 47,
+        class: "Controller",
+        genre: "Male"
+    },
+    {
+        nome: "Sova",
+        age: 34,
+        class: "Initiator",
+        genre: "Male"
+    },
+    {
+        nome: "Kill Joy",
+        age: 19,
+        class: "Sentinel",
+        genre: "Female"
+    },
+    {
+        nome: "Iso",
+        age: 30,
+        class: "Duelist",
+        genre: "Male"
+    },
+    {
+        nome: "Clove",
+        age: 22,
+        class: "Controller",
+        genre: "No binary"
+    }
+])
+
+--READ 
+db.heroes.find()
+db.heroes.find().pretty()
+
+--UPDATE
+db.heroes.updateOne(
+    { genre: 'No binary' },
+    { $set: {nome: 'Clove'}}
+)
